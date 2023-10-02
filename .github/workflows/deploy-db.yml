@@ -28,8 +28,8 @@ jobs:
                 context: database/
                 push: true
                 build-args: |
-                    - DATABASE_NAME: ${{secrets.DATABASE_NAME}}
-                    - DATABASE_PASSWORD: ${{secrets.DATABASE_PASSWORD}}
+                    - DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+                    - DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
                 tags: rumesha/contact-hub-db:latest
     
   
