@@ -24,4 +24,4 @@ services:
     depends_on:
       - mysqldb
 networks:
-  contact-hub-network
+  contact-hub-network:
