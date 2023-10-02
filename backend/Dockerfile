@@ -2,7 +2,7 @@ FROM maven:3.8.1-openjdk-17-slim
 
 COPY . .
 
-RUN mvn clean package -DskipTests
+RUN mvn clean package
 
 EXPOSE 8080
 
