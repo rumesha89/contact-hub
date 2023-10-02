@@ -1,5 +1,5 @@
 import { Contact } from "@/utils/types";
-import { Stack, Row, Col } from "react-bootstrap";
+import { Grid } from "@mui/material";
 
 type Props = {
   contact: Contact;
@@ -7,10 +7,10 @@ type Props = {
 
 export default function ContactCard({ contact }: Props) {
   return (
-    <Row>
-      <Col>{contact.name}</Col>
-      <Col>{contact.email}</Col>
-      <Col>{contact.number}</Col>
-    </Row>
+    <Grid container>
+      <Grid item>{contact.name}</Grid>
+      <Grid item>{contact.email}</Grid>
+      <Grid item>{contact.number}</Grid>
+    </Grid>
   );
 }

@@ -1,6 +1,6 @@
-import { Card, Container } from "react-bootstrap";
 import ContactList from "@/components/ContactList";
 import { Contact } from "@/utils/types";
+import { Container } from "@mui/material";
 
 const items: Contact[] = [
   {

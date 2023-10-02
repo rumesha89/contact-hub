@@ -1,4 +1,4 @@
-import { Row } from "react-bootstrap";
+import { Box } from "@mui/material";
 import ContactCard from "./ContactCard";
 import { Contact } from "@/utils/types";
 
@@ -8,10 +8,10 @@ type Props = {
 
 export default function ContactList({ items }: Props) {
   return (
-    <Row>
+    <Box>
       {items.map((item, index) => {
         return <ContactCard key={index} contact={item} />;
       })}
-    </Row>
+    </Box>
   );
 }
