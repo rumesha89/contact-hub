@@ -112,7 +112,7 @@ public class ContactServiceImpl implements ContactService {
             throw new EntityNotFoundException();
 
         /**
-         * Assuming I can only edit few of the properties
+         * Assuming user can only edit few of the properties
          */
         Contact tempContact = existingContact.get();
         tempContact.setName(contact.getName());
@@ -147,7 +147,6 @@ public class ContactServiceImpl implements ContactService {
     private boolean isExistingContact(Contact contact) {
         Optional<Contact> existingContact =
                 contactRepository.findByEmailAndCompanyName(contact.getEmail(), contact.getCompanyName());
-
         return existingContact.isPresent();
     }
 }

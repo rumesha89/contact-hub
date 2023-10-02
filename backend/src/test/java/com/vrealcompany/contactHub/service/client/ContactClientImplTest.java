@@ -1,35 +1,27 @@
 package com.vrealcompany.contactHub.service.client;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vrealcompany.contactHub.model.Contact;
 import com.vrealcompany.contactHub.model.dto.CompanyResponse;
 import com.vrealcompany.contactHub.model.dto.ContactResponse;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
-import org.junit.Before;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 @SpringBootTest
 public class ContactClientImplTest {
@@ -66,6 +58,7 @@ public class ContactClientImplTest {
 
         contactClient = new ContactClientImpl();
         contactClient.webClient = WebClient.builder().baseUrl(webClientBaseUrl).build();
+        contactClient.eventPublisher = eventPublisher;
     }
 
     @Test

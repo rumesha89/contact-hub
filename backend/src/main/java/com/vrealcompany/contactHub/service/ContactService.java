@@ -6,15 +6,15 @@ import com.vrealcompany.contactHub.model.filter.ContactFilter;
 import java.util.List;
 
 public interface ContactService {
-    public List<Contact> getContacts();
+    List<Contact> getContacts();
 
-    public Contact getContactById(Long id);
+    Contact getContactById(Long id);
 
-    public List<Contact> getContactsByFilter(ContactFilter filter);
+    List<Contact> getContactsByFilter(ContactFilter filter);
 
-    public Contact createContact(Contact contact) throws Exception;
+    Contact createContact(Contact contact) throws Exception;
 
-    public void createContacts(List<Contact> contacts);
+    void createContacts(List<Contact> contacts);
 
-    public Contact updateContact(Contact contact) throws Exception;
+    Contact updateContact(Contact contact) throws Exception;
 }

@@ -8,24 +8,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ContactEventListener {
-//
-//    @Autowired
-//    private ContactClient contactClient;
-
     @Autowired
     private ContactService contactService;
-
-//    @Async
-//    @EventListener
-//    public void handleContactsCreatedEvent(ContactCreatedEvent event) {
-////        contactClient.createContact(event.contact);
-//    }
-//
-//    @Async
-//    @EventListener
-//    public void handleContactUpdatedEvent(ContactUpdatedEvent event) {
-////        contactClient.updateContact(event.contact);
-//    }
 
     @Async
     @EventListener

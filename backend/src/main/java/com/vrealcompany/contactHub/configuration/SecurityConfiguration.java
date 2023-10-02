@@ -18,17 +18,9 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfiguration {
 
-    public static final String[] ENDPOINTS_WHITELIST = {
-            "/css/**",
-            "/",
-            "/login",
-            "/home"
-    };
-    public static final String LOGIN_URL = "/login";
-    public static final String LOGOUT_URL = "/logout";
-    public static final String LOGIN_FAIL_URL = LOGIN_URL + "?error";
-    public static final String DEFAULT_SUCCESS_URL = "/home";
-    public static final String USERNAME = "username";
+    public static final String[] ENDPOINTS_WHITELIST = {};
+    public static final String RESTRICTED_URL_PATH = "/api/**";
+    public static final String USERNAME = "admin@vrcompany.com";
     public static final String PASSWORD = "password";
 
     @Bean
@@ -39,8 +31,8 @@ public class SecurityConfiguration {
     @Bean
     public InMemoryUserDetailsManager userDetailsManager() {
         UserDetails user = User.builder()
-                .username("rumesha@gmail.com")
-                .password(encoder().encode("myPassword"))
+                .username(USERNAME)
+                .password(encoder().encode(PASSWORD))
                 .build();
 
         return new InMemoryUserDetailsManager(user);
@@ -50,7 +42,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())
-                .securityMatcher("/api/**")
+                .securityMatcher(RESTRICTED_URL_PATH)
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.PUT).authenticated()
                         .anyRequest().permitAll()

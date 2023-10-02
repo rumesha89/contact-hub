@@ -11,10 +11,10 @@ import java.time.Duration;
 
 @Configuration
 @EnableCaching
-public class CacheConfig {
+public class CacheConfiguration {
     @Bean
     public CacheManager cacheManager() {
-        CaffeineCacheManager cacheManager = new CaffeineCacheManager("contacts", "externalContacts");
+        CaffeineCacheManager cacheManager = new CaffeineCacheManager("contacts");
         cacheManager.setCaffeine(caffeineCacheBuilder());
         return cacheManager;
     }

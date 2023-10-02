@@ -29,12 +29,12 @@ public class ContactClientImpl implements ContactClient {
     @Autowired
     WebClient webClient;
 
-//    @Autowired
-//    private ApplicationEventPublisher eventPublisher;
+    @Autowired
+    ApplicationEventPublisher eventPublisher;
 
     static final String USER_URL = "/users";
 
-    @Cacheable(value = "externalContacts")
+    @Cacheable(value = "contacts")
     @Override
     public List<Contact> getAllContacts() {
         logger.info("Retrieving Contacts from partner api");
@@ -53,12 +53,12 @@ public class ContactClientImpl implements ContactClient {
                 .block();
 
         logger.info("Publishing Contact Received Event");
-//        eventPublisher.publishEvent(new ContactReceivedEvent(this, contacts));
+        eventPublisher.publishEvent(new ContactReceivedEvent(this, contacts));
 
         return contacts;
     }
 
-    @Cacheable(value = "externalContacts", key = "#id")
+    @Cacheable(value = "contacts", key = "#id")
     @Override
     public Contact getContactById(Long id) {
         logger.info("Retrieving Contact from partner api with id: " + id);
@@ -83,35 +83,43 @@ public class ContactClientImpl implements ContactClient {
     }
 
     @Override
-    @CacheEvict(value = "externalContacts", allEntries = true)
+    @CacheEvict(value = "contacts", allEntries = true)
     public Contact createContact(Contact contact) throws Exception {
-        ContactResponse payload = transformToResponse(contact);
-        Contact response = webClient
-                .post()
-                .uri(USER_URL)
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(BodyInserters.fromValue(payload))
-                .retrieve()
-                .bodyToMono(ContactResponse.class)
-                .map(this::transformToContact)
-                .block();
-        return response;
+        try {
+            ContactResponse payload = transformToResponse(contact);
+            Contact response = webClient
+                    .post()
+                    .uri(USER_URL)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(BodyInserters.fromValue(payload))
+                    .retrieve()
+                    .bodyToMono(ContactResponse.class)
+                    .map(this::transformToContact)
+                    .block();
+            return response;
+        } catch (Exception e) {
+            throw new Exception();
+        }
     }
 
     @Override
-    @CacheEvict(value = "externalContacts", key = "#contact.id")
+    @CacheEvict(value = "contacts", key = "#contact.id")
     public Contact updateContact(Contact contact) throws Exception {
-        ContactResponse payload = transformToResponse(contact);
-        Contact response = webClient
-                .put()
-                .uri(USER_URL + "/" + contact.getId())
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(BodyInserters.fromValue(payload))
-                .retrieve()
-                .bodyToMono(ContactResponse.class)
-                .map(this::transformToContact)
-                .block();
-        return response;
+        try {
+            ContactResponse payload = transformToResponse(contact);
+            Contact response = webClient
+                    .put()
+                    .uri(USER_URL + "/" + contact.getId())
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .body(BodyInserters.fromValue(payload))
+                    .retrieve()
+                    .bodyToMono(ContactResponse.class)
+                    .map(this::transformToContact)
+                    .block();
+            return response;
+        } catch (Exception e) {
+            throw new Exception();
+        }
     }
 
     private Contact transformToContact(ContactResponse response) {
