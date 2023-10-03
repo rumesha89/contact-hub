@@ -23,5 +23,24 @@ services:
       - contact-hub-network
     depends_on:
       - mysqldb
+  backend:
+    container_name: backend
+    restart: always
+    image: rumesha/contact-hub-backend
+    ports:
+      - "8080:8080"
+    networks:
+      - contact-hub-network
+    depends_on:
+      mysqldb:
+        condition: service_healthy
+    environment:
+      SPRING_APPLICATION_JSON: '{
+        "spring.datasource.url"  : "jdbc:mysql://database:3306/contact-hub?allowPublicKeyRetrieval=true&useSSL=false",
+        "spring.datasource.username" : "admin",
+        "spring.datasource.password" : "admin",
+        "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQLDialect",
+        "spring.jpa.hibernate.ddl-auto" : "update"
+        }'
 networks:
-  contact-hub-network
+  contact-hub-network:
