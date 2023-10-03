@@ -35,7 +35,7 @@ jobs:
 
       # Run Coverage Report
       - name: Run Coverage Report
-        run: mvn sonar:sonar -Pcoverage
+        run: mvn clean verify sonar:sonar
         working-directory: backend/
 
       # Sonarqube Scan
