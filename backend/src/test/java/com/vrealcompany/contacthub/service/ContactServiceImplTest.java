@@ -92,7 +92,7 @@ public class ContactServiceImplTest {
     }
 
     @Test
-    public void whenCalledGetById_returnsCorrectCachedEntity() {
+    public void testWhenCalledGetById_returnsCorrectCachedEntity() {
         Contact contactFormDB = new Contact(1L, "", "Sincere@gmail",
                 "1-770-736-8031 x56442", "hildegard.org", "Romaguera-Crona");
         when(contactClientImpl.getContactById(1L)).thenReturn(null);
@@ -104,13 +104,11 @@ public class ContactServiceImplTest {
     }
 
     @Test
-    public void whenCalledGetByIdWithWrongId_throwsNotFoundException() {
+    public void testWhenCalledGetByIdWithWrongId_throwsNotFoundException() {
         Long nonExistentId = 999L;
         when(contactClientImpl.getContactById(nonExistentId)).thenReturn(null);
         when(contactRepository.findById(nonExistentId)).thenReturn(Optional.empty());
 
-        assertThrows(EntityNotFoundException.class, () -> {
-            contactService.getContactById(nonExistentId);
-        });
+        assertThrows(EntityNotFoundException.class, () -> contactService.getContactById(nonExistentId));
     }
 }

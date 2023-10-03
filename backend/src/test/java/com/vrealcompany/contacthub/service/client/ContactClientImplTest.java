@@ -38,7 +38,7 @@ public class ContactClientImplTest {
     @Autowired
     private ObjectMapper objectMapper;
 
-    public static MockWebServer mockPartnerBackend;
+    static MockWebServer mockPartnerBackend;
 
     @BeforeAll
     static void setUp() throws IOException {
@@ -62,7 +62,7 @@ public class ContactClientImplTest {
     }
 
     @Test
-    void whenCalledGetAllContacts_returnsAll10FromPartner() throws IOException {
+    void testWhenCalledGetAllContacts_returnsAll10FromPartner() throws IOException {
         List<ContactResponse> responseList = Collections.singletonList(ContactResponse.builder()
                 .id(1)
                 .email("test@mail.com")
@@ -84,7 +84,7 @@ public class ContactClientImplTest {
     }
 
     @Test
-    void whenCalledGetAllContactsThrownError_returnsEmptyList() {
+    void testWhenCalledGetAllContactsThrownError_returnsEmptyList() {
         mockPartnerBackend.enqueue(new MockResponse()
                 .setResponseCode(500)
                 .setBody("Internal Server Error")
@@ -95,7 +95,7 @@ public class ContactClientImplTest {
     }
 
     @Test
-    void whenCalledGetContactById_returnsCorrectContact() throws IOException {
+    void testWhenCalledGetContactById_returnsCorrectContact() throws IOException {
         ContactResponse response = ContactResponse.builder()
                 .id(1)
                 .email("test@mail.com")
@@ -113,7 +113,7 @@ public class ContactClientImplTest {
     }
 
     @Test
-    void whenCalledGetContactByIdThrownError_returnsNull() {
+    void testWhenCalledGetContactByIdThrownError_returnsNull() {
         mockPartnerBackend.enqueue(new MockResponse()
                 .setResponseCode(500)
                 .setBody("Internal Server Error")
@@ -124,7 +124,7 @@ public class ContactClientImplTest {
     }
 
     @Test
-    public void whenCalledCreateContactWithPayload_createContactSuccessfully() throws Exception {
+    public void testWhenCalledCreateContactWithPayload_createContactSuccessfully() throws Exception {
         ContactResponse payload = ContactResponse.builder()
                 .email("test@mail.com")
                 .name("Test")
@@ -143,18 +143,16 @@ public class ContactClientImplTest {
     }
 
     @Test
-    public void whenCalledCreateContactThrowError_throwsError() throws Exception {
+    public void testWhenCalledCreateContactThrowError_throwsError() throws Exception {
         mockPartnerBackend.enqueue(new MockResponse().setResponseCode(500));
         Contact contact = new Contact(null, "Test", "test@mail.com", "223344555",
                 "Test.com", "Test Company");
 
-        assertThrows(Exception.class, () -> {
-            contactClient.createContact(contact);
-        });
+        assertThrows(Exception.class, () -> contactClient.createContact(contact));
     }
 
     @Test
-    public void whenCalledUpdateContactWithPayload_updateContactSuccessfully() throws Exception {
+    public void testWhenCalledUpdateContactWithPayload_updateContactSuccessfully() throws Exception {
         ContactResponse payload = ContactResponse.builder()
                 .id(1)
                 .email("test@mail.com")
@@ -174,13 +172,11 @@ public class ContactClientImplTest {
     }
 
     @Test
-    public void whenCalledUpdateContactThrowError_throwsError() throws Exception {
+    public void testWhenCalledUpdateContactThrowError_throwsError() throws Exception {
         mockPartnerBackend.enqueue(new MockResponse().setResponseCode(500));
         Contact contact = new Contact(1L, "Test", "test@mail.com", "223344555",
                 "Test.com", "Test Company");
 
-        assertThrows(Exception.class, () -> {
-            contactClient.updateContact(contact);
-        });
+        assertThrows(Exception.class, () -> contactClient.updateContact(contact));
     }
 }

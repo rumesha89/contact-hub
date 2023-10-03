@@ -121,8 +121,7 @@ public class ContactServiceImpl implements ContactService {
         logger.info("Updating new contact with email: {} and company: {}", contact.getEmail(), contact.getCompanyName());
         try {
             Contact contactSavedInRemote = contactClient.updateContact(contact);
-            Contact persistedContact = contactRepository.save(contactSavedInRemote);
-            return persistedContact;
+            return contactRepository.save(contactSavedInRemote);
         } catch (Exception e) {
             logger.error("Error updating contact with email: {} and company: {}", contact.getEmail(), contact.getCompanyName());
             throw new ApiHandleException("Error occurred while updating Contact" + e);
@@ -138,9 +137,7 @@ public class ContactServiceImpl implements ContactService {
             predicates.add(cb.like(contact.get("name"), "%" + filter.getName() + "%"));
         }
         cq.where(predicates.toArray(new Predicate[0]));
-        TypedQuery<Contact> query = em.createQuery(cq);
-
-        return  query;
+        return em.createQuery(cq);
     }
 
     private boolean isExistingContact(Contact contact) {

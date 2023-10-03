@@ -38,7 +38,7 @@ public class ContactControllerTest {
     private ObjectMapper objectMapper;
 
     @Test
-    void whenCalledGetContacts_returnsAllContacts() throws Exception {
+    void testWhenCalledGetContacts_returnsAllContacts() throws Exception {
         List<Contact> contacts = new ArrayList<>();
         contacts.add(new Contact(1L, "Leanne Graham", "Sincere@april.biz",
                 "1-770-736-8031 x56442", "hildegard.org", "Romaguera-Crona"));
@@ -55,7 +55,7 @@ public class ContactControllerTest {
     }
 
     @Test
-    void whenCalledGetContactById_returnsContactMatchingId() throws Exception {
+    void testWhenCalledGetContactById_returnsContactMatchingId() throws Exception {
         Contact contact = new Contact(1L, "Leanne Graham", "Sincere@april.biz",
                 "1-770-736-8031 x56442", "hildegard.org", "Romaguera-Crona");
         when(contactService.getContactById(1L)).thenReturn(contact);
@@ -69,7 +69,7 @@ public class ContactControllerTest {
     }
 
     @Test
-    void whenCalledGetContactByFilters_returnsCorrectContacts() throws Exception {
+    void testWhenCalledGetContactByFilters_returnsCorrectContacts() throws Exception {
         ContactFilter filter = ContactFilter.builder().name("Le").build();
         List<Contact> contacts = new ArrayList<>();
         contacts.add(new Contact(1L, "Leanne Graham", "Sincere@april.biz",
@@ -87,7 +87,7 @@ public class ContactControllerTest {
     }
 
     @Test
-    void whenCalledCreateContactWithPayload_createANewContact() throws Exception {
+    void testWhenCalledCreateContactWithPayload_createANewContact() throws Exception {
         Contact newContact = new Contact(null, "Leanne Graham", "Sincere@april.biz",
                 "1-770-736-8031 x56442", "hildegard.org", "Romaguera-Crona");
         Contact savedContact = new Contact(1L, "Leanne Graham", "Sincere@april.biz",
@@ -105,7 +105,7 @@ public class ContactControllerTest {
     }
 
     @Test
-    void whenCalledCreateContactWithErrors_returnValidationErrors() throws Exception {
+    void testWhenCalledCreateContactWithErrors_returnValidationErrors() throws Exception {
         Contact newContact = new Contact(null, "", "Sincere",
                 "1-770-736-8031 x56442", "hildegard.org", "Romaguera-Crona");
 
@@ -119,7 +119,7 @@ public class ContactControllerTest {
     }
 
     @Test
-    void whenCalledUpdateContactWithPayload_updateCorrectContact() throws Exception {
+    void testWhenCalledUpdateContactWithPayload_updateCorrectContact() throws Exception {
         Long contactId = 1L;
         Contact existingContact = new Contact(contactId, "Leanne Graham", "Sincere@april.biz",
                 "1-770-736-8031 x56442", "hildegard.org", "Romaguera-Crona");

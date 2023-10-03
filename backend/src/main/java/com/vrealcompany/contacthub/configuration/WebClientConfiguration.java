@@ -8,14 +8,13 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
 public class WebClientConfiguration {
-    private final String BASE_URL = "https://jsonplaceholder.typicode.com";
+    private static final String BASE_URL = "https://jsonplaceholder.typicode.com";
     @Bean
     public WebClient webclient() {
-        WebClient webClient = WebClient
+        return WebClient
                 .builder()
                 .baseUrl(BASE_URL)
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .build();
-        return webClient;
     }
 }
