@@ -73,30 +73,28 @@ Start the server
 ## Test Scenarios
 
 * Have written front end tests for below scenarios
+(some test cases are not covered due to time constraints)
 
-- when get All contacts returns all the contacts merged from partner and database
-- when get All contacts if partner api fails send all from database
-- when get All contacts if datanase contacts empty send all from partner
-- when get All contacts nothing in partner and Database return empty list
-- when get contact by id send correct contact for that id
-- when get contact by id if partner api fails send contact from database
-- when get contact by id if partner api sends empty then send contact from database
-- when get contact by id if a contact not present under that id send EntityNotFound
-- when create contact then create in partner api then database
-- when create contact if partner api fails then return error
-- when create contact if already in the system return error
-- when create contact if validations fails send error with error description
-- when update contact then update in partner api then database
-- when update contact if partner api fails then return error
-- when update contact if not found in the system return error
-- when update contact if validations fails send error with error description
+- User Can login successfully
+- password will be masked
+- If invalid credentials, show error message
+- List displays correctly from api response
+- card displays all the data returned from list api
+- can click on a contact card
+- once clicked on a card will route to view details
+- card shows an edit button if authenticated only
+- once edit button clicked will route to edit screen
+- user will be able to edit name, website, phone number
+- accessing edit through url will be blocked and will route to login page 
+- validations triggered accordingly
+- once submitted will show correct success/error messages
+- once successfull will return to list page
+- list page shows a create button
+- once clicked will be routed to create page
+- correct validations applied for required fields and email
+- once submitted will show correct error/success messages
+- once successfull will return to list page
+- routes are correctly blocked
+- test if api calls are correctly fires with correct inputs
+- Check filter by name triggers only after 3 characters
 
-- test third party client 
-    - convert to correct entity and to request
-    - handle errors from 3rd part api
-- Cannot be accessed by a public unauthenticated user
-- Have to call with a token obtained from /login api in the header
-- Can only edit name, website and phone number at the moment
-- If the contact requested is not present in remote, will accessed in database
-- If not in database too, will return entity not found exception with a detailed error message
-- Contact entity validations will apply to request body
