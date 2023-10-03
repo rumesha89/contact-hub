@@ -46,6 +46,8 @@ password: password
 
 
 ## Documentation
+[Back-end Assumptions, Test cases and Documentation](https://github.com/rumesha89/contact-hub/blob/feature/backend-init/backend/README.md)
 
-[Documentation](https://linktodocumentation)
+[Front-end Assumptions, Test cases and Documentation](https://github.com/rumesha89/contact-hub/blob/feature/backend-init/frontend/README.md)
+
 
