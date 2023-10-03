@@ -11,4 +11,6 @@ ENV MYSQL_ALLOW_EMPTY_PASSWORD=true
 
 COPY init.sql /docker-entrypoint-initdb.d/
 
+COPY init.sql /docker-entrypoint-initdb.d/
+
 EXPOSE 3306

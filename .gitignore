@@ -1,5 +1,4 @@
 frontend/.next
-frontend/node_modules
 frontend/coverage
 yarn-error.log
 backend/target
