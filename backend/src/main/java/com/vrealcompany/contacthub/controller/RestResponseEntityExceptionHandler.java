@@ -54,6 +54,7 @@ public class RestResponseEntityExceptionHandler {
     }
 }
 
+@SuppressWarnings("unused")
 @Data
 @AllArgsConstructor
 class ErrorResponse {

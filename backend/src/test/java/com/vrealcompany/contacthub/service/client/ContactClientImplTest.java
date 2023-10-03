@@ -103,8 +103,6 @@ public class ContactClientImplTest {
                 .phone("223344555")
                 .website("Test.com")
                 .company(CompanyResponse.builder().name("Test Company").build()).build();
-        Contact expected = new Contact(1L, "Test", "test@mail.com", "223344555",
-                "Test.com", "Test Company");
 
         mockPartnerBackend.enqueue(new MockResponse()
                 .setBody(objectMapper.writeValueAsString(response))
