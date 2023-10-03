@@ -4,8 +4,6 @@ import ContactCard from "../ContactCard";
 import "@testing-library/jest-dom";
 import { contactData } from "@contact-hub/utils/mockTestData";
 
-import { useRouter } from "next/router";
-
 jest.mock("next/router", () => ({
   useRouter: jest.fn(),
 }));
