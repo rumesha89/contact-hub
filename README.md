@@ -29,6 +29,12 @@ email: rumesha@mail.com
 password: password
 
 
+## Sonar Cloud Report
+https://sonarcloud.io/summary/new_code?id=rumesha_contact-app-backend&branch=main
+
+* Other coverage and tests reports can be found in [Back-end Documentation](https://github.com/rumesha89/contact-hub/blob/feature/backend-init/backend/README.md)
+
+
 ## Assumptions and User Stories
 - Partner Api sending only 10 contacts only, regardless how many created
 - Partner Api update frequency is low to mid
@@ -42,7 +48,7 @@ password: password
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+Please refer to Documentation
 
 
 ## Documentation
