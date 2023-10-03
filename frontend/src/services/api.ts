@@ -3,7 +3,7 @@ import { Contact, LoginRequest, LoginResponse } from "@contact-hub/store/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 // Define the base URL for your API
-const baseURL = "/api/";
+const baseURL = "http://localhost:8080/api/";
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({
