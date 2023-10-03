@@ -27,11 +27,14 @@ Start the server
   yarn dev
 ```
 
-
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-
+<img width="1374" alt="Screenshot 2023-10-03 at 2 14 28 PM" src="https://github.com/rumesha89/contact-hub/assets/60807037/310bb530-3fa8-4870-a3fc-8f9e8e696a34">
+<img width="1327" alt="Screenshot 2023-10-03 at 2 14 53 PM" src="https://github.com/rumesha89/contact-hub/assets/60807037/ac156391-7cd3-406e-a541-c468fef327c0">
+<img width="699" alt="Screenshot 2023-10-03 at 2 15 02 PM" src="https://github.com/rumesha89/contact-hub/assets/60807037/3b798023-bb1c-4735-b4eb-57c44338c462">
+<img width="1340" alt="Screenshot 2023-10-03 at 2 15 26 PM" src="https://github.com/rumesha89/contact-hub/assets/60807037/c1fd7edd-957d-4678-96ec-14ccd296f7bd">
+<img width="1380" alt="Screenshot 2023-10-03 at 2 15 35 PM" src="https://github.com/rumesha89/contact-hub/assets/60807037/5e03b592-2298-4c81-ace9-769efc7ccc36">
+<img width="1352" alt="Screenshot 2023-10-03 at 2 16 52 PM" src="https://github.com/rumesha89/contact-hub/assets/60807037/79aa4eaf-4518-4159-85a1-06d508261683">
 
 ## Assumptions and User Stories
 
