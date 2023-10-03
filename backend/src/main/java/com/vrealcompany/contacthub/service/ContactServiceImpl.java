@@ -128,19 +128,19 @@ public class ContactServiceImpl implements ContactService {
         }
     }
 
-    private TypedQuery<Contact> getTypedQueryByFilter(ContactFilter filter) {
+    TypedQuery<Contact> getTypedQueryByFilter(ContactFilter filter) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Contact> cq = cb.createQuery(Contact.class);
         Root<Contact> contact = cq.from(Contact.class);
         List<Predicate> predicates = new ArrayList<>();
         if (filter != null && filter.getName() != null && !filter.getName().isEmpty()) {
-            predicates.add(cb.like(contact.get("name"), "%" + filter.getName() + "%"));
+            predicates.add(cb.like(cb.lower(contact.get("name")), "%" + filter.getName().toLowerCase() + "%"));
         }
         cq.where(predicates.toArray(new Predicate[0]));
         return em.createQuery(cq);
     }
 
-    private boolean isExistingContact(Contact contact) {
+    boolean isExistingContact(Contact contact) {
         Optional<Contact> existingContact =
                 contactRepository.findByEmailAndCompanyName(contact.getEmail(), contact.getCompanyName());
         return existingContact.isPresent();
