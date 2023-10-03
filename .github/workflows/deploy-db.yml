@@ -31,4 +31,5 @@ jobs:
           build-args: |
             DATABASE_NAME=${{ secrets.DATABASE_NAME }}
             DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }}
+            DATABASE_USER=${{ secrets.DATABASE_USER }}
           tags: rumesha/contact-hub-db:latest
