@@ -12,7 +12,7 @@ Clone the project
 Go to the project directory
 
 ```bash
-  cd frontend
+  cd contact-hub/frontend
 ```
 
 Install dependencies
