@@ -4,6 +4,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vrealcompany.contacthub.model.Contact;
 import com.vrealcompany.contacthub.model.dto.CompanyResponse;
 import com.vrealcompany.contacthub.model.dto.ContactResponse;
+import com.vrealcompany.contacthub.repository.UserRepository;
+import com.vrealcompany.contacthub.service.AuthenticationServiceImpl;
+import com.vrealcompany.contacthub.service.JwtServiceImpl;
+import com.vrealcompany.contacthub.service.UserService;
+import com.vrealcompany.contacthub.util.JwtAuthenticationFilter;
 import okhttp3.mockwebserver.MockResponse;
 import okhttp3.mockwebserver.MockWebServer;
 import org.junit.jupiter.api.AfterAll;
@@ -14,7 +19,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.io.IOException;
@@ -28,6 +35,15 @@ public class ContactClientImplTest {
 
     @Mock
     private WebClient webClient;
+
+    @Mock
+    private JwtAuthenticationFilter filter;
+
+    @MockBean
+    private AuthenticationServiceImpl authenticationServiceImpl;
+
+    @MockBean
+    private JwtServiceImpl jwtServiceImpl;
 
     @Mock
     private ApplicationEventPublisher eventPublisher;

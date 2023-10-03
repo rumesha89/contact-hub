@@ -3,13 +3,19 @@ package com.vrealcompany.contacthub.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vrealcompany.contacthub.model.Contact;
 import com.vrealcompany.contacthub.model.filter.ContactFilter;
+import com.vrealcompany.contacthub.repository.UserRepository;
 import com.vrealcompany.contacthub.service.ContactServiceImpl;
+import com.vrealcompany.contacthub.service.UserService;
+import com.vrealcompany.contacthub.util.JwtAuthenticationFilter;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.hasSize;
@@ -30,6 +36,15 @@ public class ContactControllerTest {
 
     @MockBean
     private ContactServiceImpl contactService;
+
+    @MockBean
+    private JwtAuthenticationFilter filter;
+
+    @MockBean
+    private UserService service;
+
+    @MockBean
+    private UserRepository repository;
 
     @Autowired
     private MockMvc mockMvc;
