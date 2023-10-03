@@ -35,7 +35,7 @@ jobs:
 
       # Run Coverage Report
       - name: Run Coverage Report
-        run: mvn clean verify -P coverage -Dsonar.host.url=${{ secrets.SONAR_HOST }} -Dsonar.organization=rumesha89 -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+        run: mvn clean verify -P coverage -Dsonar.host.url=${{ secrets.SONAR_HOST }} -Dsonar.organization=rumesha -Dsonar.projectKey=rumesha_contact-app-backend -Dsonar.login=${{ secrets.SONAR_TOKEN }}
         working-directory: backend/
 
       # Sonarqube Scan
