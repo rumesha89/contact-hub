@@ -37,13 +37,13 @@ public class ContactController {
     }
 
     @PostMapping
-    public ResponseEntity<Contact> createContact(@Valid @RequestBody Contact contact) throws Exception {
+    public ResponseEntity<Contact> createContact(@Valid @RequestBody Contact contact) {
         Contact savedContact = contactService.createContact(contact);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedContact);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Contact> createContact(@PathVariable Long id, @RequestBody Contact contact) throws Exception {
+    public ResponseEntity<Contact> createContact(@PathVariable Long id, @RequestBody Contact contact) {
         contact.setId(id);
         Contact updatedContact = contactService.updateContact(contact);
         return ResponseEntity.ok(updatedContact);

@@ -61,8 +61,8 @@ public class ContactClientImpl implements ContactClient {
     @Cacheable(value = "contacts", key = "#id")
     @Override
     public Contact getContactById(Long id) {
-        logger.info("Retrieving Contact from partner api with id: " + id);
-        Contact contact = webClient.get()
+        logger.info("Retrieving Contact from partner api with id: {}", id);
+        return webClient.get()
                 .uri(USER_URL + "/" + id)
                 .retrieve()
                 .onStatus(httpStatus -> !httpStatus.is2xxSuccessful(),
@@ -78,16 +78,13 @@ public class ContactClientImpl implements ContactClient {
                     return Mono.justOrEmpty(null);
                 })
                 .block();
-
-        return contact;
     }
 
     @Override
     @CacheEvict(value = "contacts", allEntries = true)
-    public Contact createContact(Contact contact) throws Exception {
-        try {
+    public Contact createContact(Contact contact) {
             ContactResponse payload = transformToResponse(contact);
-            Contact response = webClient
+            return webClient
                     .post()
                     .uri(USER_URL)
                     .contentType(MediaType.APPLICATION_JSON)
@@ -96,18 +93,13 @@ public class ContactClientImpl implements ContactClient {
                     .bodyToMono(ContactResponse.class)
                     .map(this::transformToContact)
                     .block();
-            return response;
-        } catch (Exception e) {
-            throw new Exception();
-        }
     }
 
     @Override
     @CacheEvict(value = "contacts", key = "#contact.id")
-    public Contact updateContact(Contact contact) throws Exception {
-        try {
+    public Contact updateContact(Contact contact) {
             ContactResponse payload = transformToResponse(contact);
-            Contact response = webClient
+            return webClient
                     .put()
                     .uri(USER_URL + "/" + contact.getId())
                     .contentType(MediaType.APPLICATION_JSON)
@@ -116,10 +108,6 @@ public class ContactClientImpl implements ContactClient {
                     .bodyToMono(ContactResponse.class)
                     .map(this::transformToContact)
                     .block();
-            return response;
-        } catch (Exception e) {
-            throw new Exception();
-        }
     }
 
     private Contact transformToContact(ContactResponse response) {
@@ -143,7 +131,7 @@ public class ContactClientImpl implements ContactClient {
     }
 
     private Mono handleErrorResponse(HttpStatusCode statusCode) {
-        logger.error("Error retrieving Contacts from partner api");
+        logger.error("Error retrieving Contacts from partner api with status: {}", statusCode);
         return Mono.just(new ArrayList<>());
     }
 }

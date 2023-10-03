@@ -1,5 +1,6 @@
 package com.vrealcompany.contactHub.service;
 
+import com.vrealcompany.contactHub.controller.ApiHandleException;
 import com.vrealcompany.contactHub.model.Contact;
 import com.vrealcompany.contactHub.model.filter.ContactFilter;
 import com.vrealcompany.contactHub.repository.ContactRepository;
@@ -52,13 +53,13 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     public Contact getContactById(Long id) {
-        logger.info("Retrieving contact by id: " + id);
+        logger.info("Retrieving contact by id: {}", id);
         Contact contact = null;
         contact = contactClient.getContactById(id);
-        if(contact.getId() == null){
+        if(contact == null){
             Optional<Contact> optionalContact = contactRepository.findById(id);
             if(optionalContact.isEmpty()){
-                throw new EntityNotFoundException();
+                throw new EntityNotFoundException("Contact not found with id: " + id);
             }
             contact = optionalContact.get();
         }
@@ -68,8 +69,7 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     public List<Contact> getContactsByFilter(ContactFilter filter) {
-        logger.info("Filtering contacts with name: " + filter.getName());
-
+        logger.info("Filtering contacts with name: {}", filter.getName());
         List<Contact> contactsFromApi = contactClient.getAllContacts().stream()
                 .filter(contact -> filter.getName() == null || contact.getName().contains(filter.getName())).toList();
         List<Contact> contactsFromDb =  getTypedQueryByFilter(filter).getResultList();
@@ -80,19 +80,18 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public Contact createContact(Contact contact) throws Exception {
+    public Contact createContact(Contact contact) {
         if(isExistingContact(contact)) {
-            logger.info("Entity already present.");
-            throw new IllegalArgumentException("Contact already present in the system.");
+            logger.info("Entity already present with email: {} and company-name: {}.", contact.getEmail(), contact.getCompanyName());
+            throw new IllegalArgumentException("Contact already exists in the system with same email for the company.");
         }
-        logger.info("Creating new contact with email: " + contact.getEmail() + " and Company " + contact.getCompanyName());
+        logger.info("Creating new contact with email: {} and company: {}", contact.getEmail(), contact.getCompanyName());
         try {
             Contact contactSavedInRemote = contactClient.createContact(contact);
-            Contact persistedContact = contactRepository.save(contactSavedInRemote);
-            return persistedContact;
+            return contactRepository.save(contactSavedInRemote);
         } catch (Exception e) {
-            logger.error("Error creating contact with email: " + contact.getEmail() + " and Company " + contact.getCompanyName());
-            throw new Exception("Error Creating Contact", e);
+            logger.error("Error creating contact with email: {} and company: {}", contact.getEmail(), contact.getCompanyName());
+            throw new ApiHandleException("Error Occurred while creating Contact");
         }
     }
 
@@ -106,7 +105,7 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public Contact updateContact(Contact contact) throws Exception {
+    public Contact updateContact(Contact contact) {
         Optional<Contact> existingContact = contactRepository.findById(contact.getId());
         if(existingContact.isEmpty())
             throw new EntityNotFoundException();
@@ -119,14 +118,14 @@ public class ContactServiceImpl implements ContactService {
         tempContact.setPhone(contact.getPhone());
         tempContact.setWebsite(contact.getWebsite());
 
-        logger.info("Updating new contact with email: " + contact.getEmail() + " and Company " + contact.getCompanyName());
+        logger.info("Updating new contact with email: {} and company: {}", contact.getEmail(), contact.getCompanyName());
         try {
             Contact contactSavedInRemote = contactClient.updateContact(contact);
             Contact persistedContact = contactRepository.save(contactSavedInRemote);
             return persistedContact;
         } catch (Exception e) {
-            logger.error("Error updating contact with email: " + contact.getEmail() + " and Company " + contact.getCompanyName());
-            throw new Exception("Error updating Contact", e);
+            logger.error("Error updating contact with email: {} and company: {}", contact.getEmail(), contact.getCompanyName());
+            throw new ApiHandleException("Error occurred while updating Contact" + e);
         }
     }
 

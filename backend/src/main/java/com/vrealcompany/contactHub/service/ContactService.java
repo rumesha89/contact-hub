@@ -12,9 +12,9 @@ public interface ContactService {
 
     List<Contact> getContactsByFilter(ContactFilter filter);
 
-    Contact createContact(Contact contact) throws Exception;
+    Contact createContact(Contact contact);
 
     void createContacts(List<Contact> contacts);
 
-    Contact updateContact(Contact contact) throws Exception;
+    Contact updateContact(Contact contact);
 }

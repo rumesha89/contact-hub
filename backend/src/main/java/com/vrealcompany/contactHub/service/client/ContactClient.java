@@ -9,7 +9,7 @@ public interface ContactClient {
 
     Contact getContactById(Long id);
 
-    Contact createContact(Contact contact) throws Exception;
+    Contact createContact(Contact contact);
 
-    Contact updateContact(Contact contact) throws Exception;
+    Contact updateContact(Contact contact);
 }
