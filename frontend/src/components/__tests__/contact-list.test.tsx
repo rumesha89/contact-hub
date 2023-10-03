@@ -26,5 +26,5 @@ test("it should render ContactList and handle button click", () => {
 
   fireEvent.click(createNewButton);
 
-  expect(push).toHaveBeenCalledWith("contacts/");
+  expect(push).toHaveBeenCalledWith("/contacts/new");
 });

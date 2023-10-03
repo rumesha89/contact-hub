@@ -8,10 +8,9 @@ const baseURL = "http://localhost:8080/api/";
 export const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: baseURL,
-    prepareHeaders(headers, { getState }) {
+    prepareHeaders(headers, { getState, endpoint }) {
       const token = (getState() as RootState).auth.token;
-
-      if (token) {
+      if (token && endpoint === "updateContact") {
         headers.set("Authorization", `Bearer ${token}`);
       }
 

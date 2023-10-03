@@ -27,8 +27,8 @@ export default function LoginForm() {
 
   return (
     <Box>
-      <Grid container spacing={2}>
-        <Grid item md={12}>
+      <Grid container spacing={2} marginTop={1}>
+        <Grid item md={12} xs={12}>
           <FormInputText
             control={control}
             label="Email"
@@ -36,12 +36,13 @@ export default function LoginForm() {
             value={""}
           />
         </Grid>
-        <Grid item md={12}>
+        <Grid item md={12} xs={12}>
           <FormInputText
             control={control}
             label="Password"
             name="password"
             value={""}
+            type="password"
           />
         </Grid>
       </Grid>

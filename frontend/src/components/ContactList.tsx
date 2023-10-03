@@ -23,12 +23,12 @@ export default function ContactList() {
   };
 
   const onCreateNew = () => {
-    push(`contacts/`);
+    push(`/contacts/new`);
   };
   return (
     <Box>
       <Grid container spacing={2}>
-        <Grid item md={10}>
+        <Grid item md={10} sm={8} xs={12}>
           <TextField
             fullWidth
             label=""
@@ -46,7 +46,7 @@ export default function ContactList() {
             }}
           />
         </Grid>
-        <Grid item md={2}>
+        <Grid item md={2} sm={4} xs={12}>
           <Button fullWidth variant="contained" onClick={onCreateNew}>
             Create New
           </Button>

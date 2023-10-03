@@ -6,9 +6,16 @@ type Props = {
   control: Control<FieldValues> | undefined;
   label: string;
   value: string;
+  type?: string;
 };
 
-export default function FormInputText({ name, control, label, value }: Props) {
+export default function FormInputText({
+  name,
+  control,
+  label,
+  value,
+  type,
+}: Props) {
   return (
     <Controller
       name={name}
@@ -23,6 +30,7 @@ export default function FormInputText({ name, control, label, value }: Props) {
           fullWidth
           label={label}
           variant="outlined"
+          type={type ?? "text"}
         />
       )}
       defaultValue={value}
