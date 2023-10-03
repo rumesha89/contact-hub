@@ -5,17 +5,16 @@ import com.vrealcompany.contacthub.model.Contact;
 import com.vrealcompany.contacthub.model.filter.ContactFilter;
 import com.vrealcompany.contacthub.repository.UserRepository;
 import com.vrealcompany.contacthub.service.ContactServiceImpl;
-import com.vrealcompany.contacthub.service.UserService;
-import com.vrealcompany.contacthub.util.JwtAuthenticationFilter;
+import com.vrealcompany.contacthub.service.auth.UserService;
+import com.vrealcompany.contacthub.configuration.JwtAuthenticationFilter;
+import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.hasSize;
@@ -148,5 +147,44 @@ public class ContactControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", is(1)))
                 .andExpect(jsonPath("$.email", is("Sincere@april.biz")));
+    }
+
+    @Test
+    void testWhenThrownApiError_returnCorrectErrorResponse() throws Exception {
+        Contact contact = new Contact(null, "Leanne Graham", "Sincere@april.biz",
+                "1-770-736-8031 x56442", "hildegard.org", "Romaguera-Crona");
+        when(contactService.createContact(contact)).thenThrow(new ApiHandleException("Error Creating Contact"));
+
+        mockMvc.perform(post("/api/contacts")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(contact))
+                )
+                .andExpect(status().is5xxServerError())
+                .andExpect(jsonPath("$.message").value("Error Creating Contact"));
+    }
+
+    @Test
+    void testWhenThrownEntityNotFoundError_returnCorrectErrorResponse() throws Exception {
+        when(contactService.getContactById(any())).thenThrow(new EntityNotFoundException("No Contacts Found."));
+
+        mockMvc.perform(get("/api/contacts/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.message").value("No Contacts Found."));
+    }
+
+    @Test
+    void testWhenThrownIllegalArgumentError_returnCorrectErrorResponse() throws Exception {
+        Contact contact = new Contact(null, "Leanne Graham", "Sincere@april.biz",
+                "1-770-736-8031 x56442", "hildegard.org", "Romaguera-Crona");
+        when(contactService.createContact(contact)).thenThrow(new IllegalArgumentException("Contact already exists."));
+
+        mockMvc.perform(post("/api/contacts")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(contact))
+                )
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.message").value("Contact already exists."));
     }
 }

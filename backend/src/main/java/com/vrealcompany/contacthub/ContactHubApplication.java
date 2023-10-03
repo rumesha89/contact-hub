@@ -18,14 +18,4 @@ public class ContactHubApplication {
 		SpringApplication.run(ContactHubApplication.class, args);
 	}
 
-//	@Bean
-//	public CommandLineRunner demo(UserRepository userRepository) {
-//		return (args) -> {
-//			User user = User.builder().firstName("Rumesha").lastName("Ranathunga")
-//					.email("rumesha@mail.com").password(new BCryptPasswordEncoder().encode("password"))
-//					.role(Role.USER).build();
-//			userRepository.save(user);
-//		};
-//	}
-
 }

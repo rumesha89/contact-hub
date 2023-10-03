@@ -1,8 +1,7 @@
 package com.vrealcompany.contacthub.controller;
 
+import com.vrealcompany.contacthub.model.dto.ErrorResponse;
 import jakarta.persistence.EntityNotFoundException;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -52,12 +51,4 @@ public class RestResponseEntityExceptionHandler {
         errorResponse.setMessage(ex.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
-}
-
-@SuppressWarnings("unused")
-@Data
-@AllArgsConstructor
-class ErrorResponse {
-    private int statusCode;
-    private String message;
 }

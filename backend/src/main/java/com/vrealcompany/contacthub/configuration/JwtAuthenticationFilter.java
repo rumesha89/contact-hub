@@ -1,14 +1,13 @@
-package com.vrealcompany.contacthub.util;
+package com.vrealcompany.contacthub.configuration;
 
-import com.vrealcompany.contacthub.service.JwtService;
-import com.vrealcompany.contacthub.service.UserService;
+import com.vrealcompany.contacthub.service.auth.JwtService;
+import com.vrealcompany.contacthub.service.auth.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.apache.commons.lang3.StringUtils;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContext;

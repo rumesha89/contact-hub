@@ -1,4 +1,4 @@
-package com.vrealcompany.contacthub.service;
+package com.vrealcompany.contacthub.service.auth;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

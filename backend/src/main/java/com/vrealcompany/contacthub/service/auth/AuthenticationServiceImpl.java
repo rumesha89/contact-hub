@@ -1,6 +1,5 @@
-package com.vrealcompany.contacthub.service;
+package com.vrealcompany.contacthub.service.auth;
 
-import com.vrealcompany.contacthub.enums.Role;
 import com.vrealcompany.contacthub.model.User;
 import com.vrealcompany.contacthub.model.dto.JwtAuthenticationResponse;
 import com.vrealcompany.contacthub.model.dto.LoginRequest;

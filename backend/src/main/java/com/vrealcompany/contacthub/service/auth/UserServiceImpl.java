@@ -1,4 +1,4 @@
-package com.vrealcompany.contacthub.service;
+package com.vrealcompany.contacthub.service.auth;
 
 import com.vrealcompany.contacthub.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

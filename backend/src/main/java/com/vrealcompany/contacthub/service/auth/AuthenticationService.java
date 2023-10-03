@@ -1,4 +1,4 @@
-package com.vrealcompany.contacthub.service;
+package com.vrealcompany.contacthub.service.auth;
 
 import com.vrealcompany.contacthub.model.dto.JwtAuthenticationResponse;
 import com.vrealcompany.contacthub.model.dto.LoginRequest;

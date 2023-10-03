@@ -2,7 +2,7 @@ package com.vrealcompany.contacthub.controller;
 
 import com.vrealcompany.contacthub.model.dto.JwtAuthenticationResponse;
 import com.vrealcompany.contacthub.model.dto.LoginRequest;
-import com.vrealcompany.contacthub.service.AuthenticationService;
+import com.vrealcompany.contacthub.service.auth.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;

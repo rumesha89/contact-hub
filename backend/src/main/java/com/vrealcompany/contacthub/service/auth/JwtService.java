@@ -1,4 +1,4 @@
-package com.vrealcompany.contacthub.service;
+package com.vrealcompany.contacthub.service.auth;
 
 import org.springframework.security.core.userdetails.UserDetails;
 

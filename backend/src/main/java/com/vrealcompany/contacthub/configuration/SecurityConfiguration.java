@@ -1,7 +1,6 @@
 package com.vrealcompany.contacthub.configuration;
 
-import com.vrealcompany.contacthub.service.UserService;
-import com.vrealcompany.contacthub.util.JwtAuthenticationFilter;
+import com.vrealcompany.contacthub.service.auth.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
