@@ -67,8 +67,10 @@ Returns all the contacts (Pagination to be implemented)
 
 
 ## Screenshots
+<img width="1330" alt="Screen Shot 2023-10-03 at 1 50 24 PM" src="https://github.com/rumesha89/contact-hub/assets/60807037/1fcbffba-237c-4354-866e-9298a2682b0d">
+<img width="514" alt="Screen Shot 2023-10-03 at 1 52 29 PM" src="https://github.com/rumesha89/contact-hub/assets/60807037/b7cd380c-3400-4d6a-9722-2f48e0b260c7">
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+<img width="1535" alt="Screen Shot 2023-10-03 at 1 54 03 PM" src="https://github.com/rumesha89/contact-hub/assets/60807037/20b7d173-0bb8-4d3a-8c2e-e2ebbedd52e1">
 
 
 ## Assumptions and User Stories
