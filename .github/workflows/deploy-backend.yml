@@ -33,10 +33,10 @@ jobs:
         run: mvn test
         working-directory: backend/
 
-      # # Run Coverage Report
-      # - name: Run Coverage Report
-      #   run: mvn sonar:sonar -Pcoverage
-      #   working-directory: backend/
+      # Run Coverage Report
+      - name: Run Coverage Report
+        run: mvn sonar:sonar -Pcoverage
+        working-directory: backend/
 
       # Sonarqube Scan
       - name: Scan
