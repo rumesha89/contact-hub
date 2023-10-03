@@ -24,6 +24,10 @@ jobs:
       - name: Install Dependency
         run: yarn install
         working-directory: frontend/
+      
+      - name: Run Lint Check
+        run: yarn lint
+        working-directory: frontend/
 
       - name: Run Tests
         run: yarn test

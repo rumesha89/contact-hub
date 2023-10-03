@@ -4,7 +4,22 @@ import "@testing-library/jest-dom";
 import { contactData } from "@contact-hub/utils/mockTestData";
 import { ContactDetails } from "..";
 
+jest.mock("next/router", () => ({
+  useRouter: jest.fn(),
+}));
+
+jest.mock("src/hooks/useAuth", () => {
+  return {
+    useAuth: () => ({
+      isAuthenticated: false,
+    }),
+  };
+});
+
 test("should render contact card details", () => {
+  const push = jest.fn();
+  require("next/router").useRouter.mockReturnValue({ push });
+
   render(<ContactDetails contact={contactData} />);
 
   const name = screen.getByRole("heading", { name: contactData.name });

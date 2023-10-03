@@ -15,7 +15,7 @@ export default function LoginForm() {
 
   useEffect(() => {
     updateAuthToken(loginResponse?.token);
-  }, [loginResponse]);
+  }, [loginResponse, updateAuthToken]);
 
   const onLogin = (value: any) => {
     const loginRequest: LoginRequest = {

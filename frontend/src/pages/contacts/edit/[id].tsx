@@ -1,9 +1,6 @@
 import { ContactForm, ProtectedRoute } from "@contact-hub/components";
-import { useAuth } from "@contact-hub/hooks";
 import { useGetContactDetailsQuery } from "@contact-hub/services";
-import { Container } from "@mui/material";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 
 export default function EditContactPage() {
   const { query } = useRouter();

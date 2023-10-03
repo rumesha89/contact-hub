@@ -5,7 +5,6 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
-  LinearProgress,
   Toolbar,
   Typography,
 } from "@mui/material";

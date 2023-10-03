@@ -15,7 +15,7 @@ export default function ProtectedRoute({ children }: Props) {
     if (!isAuthenticated) {
       replace("/");
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, replace]);
 
   if (!isAuthenticated) {
     return <></>;

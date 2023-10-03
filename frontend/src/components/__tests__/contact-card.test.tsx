@@ -11,11 +11,14 @@ jest.mock("next/router", () => ({
 }));
 
 const push = jest.fn();
+require("next/router").useRouter.mockReturnValue({ push });
 
-// mock a return value on useRouter
-(useRouter as jest.Mock).mockReturnValue({
-  query: {},
-  push: push,
+jest.mock("src/hooks/useAuth", () => {
+  return {
+    useAuth: () => ({
+      isAuthenticated: true,
+    }),
+  };
 });
 
 describe("ContactCard", () => {

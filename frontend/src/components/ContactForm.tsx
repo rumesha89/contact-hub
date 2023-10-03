@@ -33,7 +33,7 @@ export default function ContactForm({ contact }: Props) {
       setValue("email", contact.email);
       setValue("website", contact.website);
     }
-  }, [contact]);
+  }, [contact, setValue]);
 
   return (
     <Box>
