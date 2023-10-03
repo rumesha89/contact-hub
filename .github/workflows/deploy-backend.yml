@@ -39,13 +39,13 @@ jobs:
         working-directory: backend/
 
       # Sonarqube Scan
-      - name: Scan
-        uses: sonarsource/sonarqube-scan-action@master
-        env:
-            SONAR_HOST_URL: ${{ secrets.SONAR_HOST }}
-            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-            projectBaseDir: backend/
+      # - name: Scan
+      #   uses: sonarsource/sonarqube-scan-action@master
+      #   env:
+      #       SONAR_HOST_URL: ${{ secrets.SONAR_HOST }}
+      #       SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      #   with:
+      #       projectBaseDir: backend/
 
       # Docker Build and push
       - name: Docker login
